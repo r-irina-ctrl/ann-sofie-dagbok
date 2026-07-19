@@ -1,0 +1,427 @@
+
+:root {
+  --paper: #e9a385;
+  --paper-light: #f2c2a6;
+  --paper-dark: #ba6f4d;
+  --ink: #5a2f1f;
+  --ink-soft: #7c4a33;
+  --shadow: rgba(70, 34, 20, 0.28);
+  --cream: #ffe1c8;
+  --film: #2d211d;
+  --film-edge: #130f0d;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 5%, rgba(255,255,255,.18), transparent 26rem),
+    linear-gradient(135deg, #d78362, #efb08d 42%, #c77859);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .18;
+  background-image:
+    repeating-radial-gradient(circle at 20% 30%, rgba(90, 47, 31, .25) 0 1px, transparent 1px 4px);
+  mix-blend-mode: multiply;
+}
+
+.cover,
+.end-page {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  padding: clamp(1rem, 4vw, 3rem);
+}
+
+.cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .3;
+  background-image:
+    repeating-radial-gradient(circle at 30% 20%, rgba(19, 15, 13, .3) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(115deg, rgba(19, 15, 13, .08) 0 1px, transparent 1px 6px);
+  mix-blend-mode: multiply;
+}
+
+.end-page {
+  background: radial-gradient(ellipse at center, transparent 45%, rgba(19, 15, 13, .55) 100%);
+}
+
+.cover img,
+.end-page img {
+  width: min(92vw, 720px);
+  max-height: 92svh;
+  object-fit: contain;
+  border: 1px solid rgba(89, 45, 26, .35);
+  box-shadow: 0 28px 80px var(--shadow);
+}
+
+.cover-text {
+  position: absolute;
+  left: clamp(1rem, 5vw, 5rem);
+  bottom: clamp(1rem, 5vw, 4rem);
+  color: #4c2415;
+  text-shadow: 0 1px 0 rgba(255, 224, 198, .55);
+}
+
+.cover-text p {
+  margin: 0 0 .35rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .78rem;
+}
+
+.cover-text h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(3rem, 12vw, 8rem);
+  line-height: .9;
+}
+
+.cover-text a,
+.chapter-nav a,
+.film-button {
+  color: var(--cream);
+  background: var(--ink);
+  border: 1px solid rgba(255,255,255,.18);
+  text-decoration: none;
+}
+
+.intro-note {
+  padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 5vw, 5rem);
+  text-align: center;
+}
+
+.intro-note > p {
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-style: italic;
+  color: var(--ink);
+}
+
+.intro-pages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.intro-pages img {
+  width: min(88vw, 380px);
+  box-shadow: 0 18px 50px rgba(70, 34, 20, .3);
+  border: 1px solid rgba(89, 45, 26, .35);
+  transform: rotate(-1.5deg);
+}
+
+.intro-pages img:nth-child(2n) {
+  transform: rotate(1.2deg);
+}
+
+.intro-quote {
+  margin: 1.6rem auto 0;
+  max-width: 560px;
+  padding: 1.2rem 1.6rem;
+  border-left: 3px solid var(--ink-soft);
+  text-align: left;
+  font-style: italic;
+}
+
+.intro-quote p {
+  margin: 0 0 .9rem;
+  line-height: 1.6;
+}
+
+.intro-quote p:last-child {
+  margin-bottom: 0;
+}
+
+.cover-text a {
+  display: inline-block;
+  padding: .85rem 1.15rem;
+}
+
+.chapter-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: .35rem;
+  align-items: center;
+  overflow-x: auto;
+  padding: .55rem;
+  background: rgba(70, 34, 20, .78);
+  backdrop-filter: blur(10px);
+}
+
+.chapter-nav a {
+  flex: 0 0 auto;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  display: inline-grid;
+  place-items: center;
+  padding: 0 .75rem;
+  border-radius: 999px;
+  font-family: Arial, sans-serif;
+  font-size: .9rem;
+}
+
+.chapter {
+  position: relative;
+  padding: clamp(3rem, 8vw, 7rem) clamp(1rem, 5vw, 5rem);
+  border-top: none;
+  background-image: repeating-linear-gradient(90deg, rgba(90, 47, 31, .3) 0 10px, transparent 10px 18px);
+  background-size: 100% 1px;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+.chapter::before {
+  content: attr(data-num);
+  position: absolute;
+  top: clamp(.5rem, 3vw, 2rem);
+  right: clamp(.5rem, 4vw, 3rem);
+  font-family: Georgia, serif;
+  font-size: clamp(5rem, 16vw, 13rem);
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(90, 47, 31, .14);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.chapter-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.chapter-copy {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  background: rgba(255, 225, 200, .56);
+  box-shadow: 0 18px 60px rgba(70, 34, 20, .16);
+  border: 1px solid rgba(90, 47, 31, .22);
+}
+
+.kicker,
+.film-heading p,
+.end-page p {
+  font-family: Arial, sans-serif;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-size: .78rem;
+  color: var(--ink-soft);
+}
+
+.chapter-period {
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-size: .74rem;
+  color: var(--ink);
+  background: var(--cream);
+  padding: .3rem .7rem;
+  margin: 0 0 1.1rem;
+  border: 1px dashed rgba(90, 47, 31, .45);
+  transform: rotate(-1.4deg);
+  box-shadow: 0 4px 10px rgba(70, 34, 20, .18);
+}
+
+.chapter h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.2rem, 6vw, 5.2rem);
+  line-height: 1;
+  font-weight: 500;
+}
+
+.chapter p {
+  font-size: clamp(1.05rem, 2.2vw, 1.28rem);
+  line-height: 1.72;
+}
+
+.shout {
+  font-weight: 700;
+}
+
+.film-section {
+  max-width: 1180px;
+  margin: clamp(2rem, 6vw, 4.5rem) auto 0;
+}
+
+.film-hint {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: .78rem;
+  letter-spacing: .04em;
+  color: var(--ink-soft);
+  margin: 0 0 .6rem;
+}
+
+.film-shell {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: .65rem;
+}
+
+.film-button {
+  width: 2.8rem;
+  height: 4.2rem;
+  border-radius: 999px;
+  font-size: 2rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  animation: nudge 2.4s ease-in-out infinite;
+}
+
+.film-button.prev { animation-direction: reverse; }
+
+@keyframes nudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+.film-strip {
+  --hole: radial-gradient(circle, var(--paper) 0 35%, transparent 37%);
+  --hole-v: radial-gradient(circle, var(--paper) 0 35%, transparent 37%);
+  display: flex;
+  gap: clamp(.85rem, 2vw, 1.4rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 1rem;
+  padding: 2.4rem 1.6rem;
+  background:
+    var(--hole) 0 .45rem / 2rem 1rem repeat-x,
+    var(--hole) 0 calc(100% - .45rem) / 2rem 1rem repeat-x,
+    var(--hole-v) .5rem 0 / 1rem 2rem repeat-y,
+    var(--hole-v) calc(100% - .5rem) 0 / 1rem 2rem repeat-y,
+    linear-gradient(180deg, var(--film-edge), var(--film) 18%, var(--film) 82%, var(--film-edge));
+  border-radius: .45rem;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), 0 22px 60px var(--shadow);
+  cursor: grab;
+}
+
+.film-strip:active {
+  cursor: grabbing;
+}
+
+.film-frame {
+  scroll-snap-align: center;
+  flex: 0 0 min(78vw, 430px);
+  margin: 0;
+  padding: .8rem;
+  background: #f6dfc8;
+  color: var(--ink);
+  box-shadow: 0 12px 30px rgba(0,0,0,.42);
+  transform: rotate(var(--tilt, -1deg));
+}
+
+.film-frame:nth-child(2n) { --tilt: 1.2deg; }
+.film-frame:nth-child(3n) { --tilt: -.4deg; }
+
+.film-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: #d6b39a;
+}
+
+.end-page {
+  min-height: 90svh;
+  gap: .5rem;
+}
+
+.end-page p {
+  margin: 0;
+  color: var(--ink);
+}
+
+.to-top {
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  font-size: .85rem;
+  letter-spacing: .05em;
+  color: var(--cream);
+  background: var(--ink);
+  border: 1px solid rgba(255,255,255,.18);
+  text-decoration: none;
+  padding: .8rem 1.3rem;
+  border-radius: 999px;
+}
+
+@media (max-width: 720px) {
+  .cover {
+    min-height: 92svh;
+  }
+
+  .cover-text {
+    position: static;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .cover img,
+  .end-page img {
+    max-height: 72svh;
+  }
+
+  .film-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .film-button {
+    width: 2.5rem;
+    height: 3.6rem;
+    font-size: 1.6rem;
+  }
+
+  .chapter {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    overflow-x: hidden;
+  }
+
+  .chapter::before {
+    top: .25rem;
+    right: .5rem;
+    font-size: 4rem;
+    opacity: .8;
+  }
+
+  .chapter-copy {
+    padding: 1.1rem;
+  }
+
+  .chapter-period {
+    transform: none;
+    font-size: .68rem;
+  }
+
+  .film-frame {
+    flex-basis: 84vw;
+  }
+
+  .end-page {
+    text-align: center;
+  }
+}
