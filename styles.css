@@ -122,6 +122,19 @@ body::before {
   gap: clamp(1rem, 3vw, 2rem);
 }
 
+.diary-break {
+  margin: 2.4rem auto;
+  max-width: 480px;
+  text-align: center;
+}
+
+.diary-break img {
+  width: 100%;
+  box-shadow: 0 18px 50px rgba(70, 34, 26, .3);
+  border: 1px solid rgba(89, 45, 26, .35);
+  transform: rotate(-.8deg);
+}
+
 .intro-pages img {
   width: min(88vw, 380px);
   box-shadow: 0 18px 50px rgba(70, 34, 20, .3);
@@ -149,6 +162,22 @@ body::before {
 
 .intro-quote p:last-child {
   margin-bottom: 0;
+}
+
+.epilog .intro-pages img {
+  width: min(480px, 90%);
+  box-shadow: 0 18px 50px rgba(70, 34, 26, .3);
+  border: 1px solid rgba(89, 45, 26, .35);
+}
+
+.epilog .intro-quote {
+  margin-top: 1.6rem;
+}
+
+.epilog-audio {
+  display: block;
+  width: min(420px, 100%);
+  margin: 2rem auto 0;
 }
 
 .cover-text a {
