@@ -174,10 +174,59 @@ body::before {
   margin-top: 1.6rem;
 }
 
-.epilog-audio {
-  display: block;
+.epilog-player {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   width: min(420px, 100%);
   margin: 2rem auto 0;
+  padding: .9rem 1.2rem;
+  background: var(--ink);
+  border-radius: 999px;
+  box-shadow: 0 14px 30px rgba(40, 20, 12, .35);
+}
+
+.epilog-play {
+  flex: 0 0 auto;
+  width: 2.6rem;
+  height: 2.6rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 1rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.epilog-track {
+  flex: 1;
+  min-width: 0;
+}
+
+.epilog-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.25);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.epilog-progress span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--cream);
+  border-radius: 999px;
+}
+
+.epilog-time {
+  margin-top: .4rem;
+  font-family: Arial, sans-serif;
+  font-size: .72rem;
+  letter-spacing: .03em;
+  color: rgba(255,255,255,.75);
 }
 
 .cover-text a {
